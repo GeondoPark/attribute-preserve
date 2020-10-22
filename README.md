@@ -18,7 +18,7 @@ wget -nc -P ./data http://pjreddie.com/media/files/VOCtrainval_11-May-2012.tar
 tar -xvf ./data/VOCtrainval_11-May-2012.tar -C ./data
 ```
 ## Distillation
-For stochastic matching, add --stochasticity --drop_percent 0.3 arguments for all below scripts.
+For stochastic matching, add --stochastic --drop_percent 0.3 arguments for all below scripts.
 
 Overall hyperparameters for training are set by default. In folder ./pascal/distillation:
 ### Train teacher
@@ -31,7 +31,7 @@ python voc_distill_main.py --gpu --exp_name name --arch VGG16_VOC_x8 --teacher_p
 ```
 
 ## Structure Pruning (One-shot) with sensitivity weighted attribution matching
-For stochastic matching, add --stochasticity --drop_percent 0.3 arguments for all below scripts.
+For stochastic matching, add --stochastic --drop_percent 0.3 arguments for all below scripts.
 
 Overall hyperparameters for training are set by default. In folder ./pascal/structure:
 ```makefolder
@@ -39,7 +39,7 @@ python iteratrive_prune_distill.py --gpu --exp_name name --teacher_path <saved_t
 ```
 
 ## UnStructure Pruning (Iterative) with sensitivity weighted attribution matching
-For stochastic matching, add --stochasticity --drop_percent 0.3 arguments for all below scripts.
+For stochastic matching, add --stochastic --drop_percent 0.3 arguments for all below scripts.
 
 Overall hyperparameters for training are set by default. In folder ./pascal/unstructure:
 ```makefolder
