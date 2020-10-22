@@ -1,5 +1,5 @@
 # Attribution Preservation in Network Compression for Reliable Network Interpretation
-This repository is the official PyTorch implementation of Attribution Preservation in Network Compression for Reliable Network Interpretation by [Geondo Park](https://github.com/GeondoPark), [June Yong Yang](), [Sung Ju Hwang](http://www.sungjuhwang.com), [Eunho Yang](https://sites.google.com/site/yangeh/). 
+This repository is the official PyTorch implementation of Attribution Preservation in Network Compression for Reliable Network Interpretation by [Geondo Park](https://github.com/GeondoPark), [June Yong Yang](), [Sung Ju Hwang](http://www.sungjuhwang.com), [Eunho Yang](https://sites.google.com/site/yangeh/). To be appear in NeurIPS 2020.
 
 ## Requirements
 Currently, requires following packages
