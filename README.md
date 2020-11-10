@@ -61,9 +61,15 @@ python evaluate_localization.py --gpu --data_path ../../data/VOCdevkit/VOC2012 -
  - Implementation of attribution maps are based on : [Relative_Attributing_Propagation](https://github.com/wjNam/Relative_Attributing_Propagation)
 ## Citation
 @article{park2020attribution,
+
   title={Attribution Preservation in Network Compression for Reliable Network Interpretation},
+  
   author={Park, Geondo and Yang, June Yong and Hwang, Sung Ju and Yang, Eunho},
+  
   journal={Advances in Neural Information Processing Systems},
+  
   volume={33},
+  
   year={2020}
+  
 }
