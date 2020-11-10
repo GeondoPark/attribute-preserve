@@ -1,5 +1,5 @@
 # Attribution Preservation in Network Compression for Reliable Network Interpretation
-This repository is the official PyTorch implementation of [Attribution Preservation in Network Compression for Reliable Network Interpretation](https://arxiv.org/abs/2010.15054) by [Geondo Park](https://github.com/GeondoPark), [June Yong Yang](), [Sung Ju Hwang](http://www.sungjuhwang.com), [Eunho Yang](https://sites.google.com/site/yangeh/). To be appear in NeurIPS 2020.
+This repository is the official PyTorch implementation of [Attribution Preservation in Network Compression for Reliable Network Interpretation](https://arxiv.org/abs/2010.15054) by [Geondo Park](https://github.com/GeondoPark), [June Yong Yang](), [Sung Ju Hwang](http://www.sungjuhwang.com), [Eunho Yang](https://sites.google.com/site/yangeh/). NeurIPS 2020.
 
 ## Requirements
 Currently, requires following packages
@@ -60,6 +60,10 @@ python evaluate_localization.py --gpu --data_path ../../data/VOCdevkit/VOC2012 -
  - Our network pruning code is implemented based on : [rethink-network-pruning](https://github.com/Eric-mingjie/rethinking-network-pruning)
  - Implementation of attribution maps are based on : [Relative_Attributing_Propagation](https://github.com/wjNam/Relative_Attributing_Propagation)
 ## Citation
-```
-To be updated
-```
+@article{park2020attribution,
+  title={Attribution Preservation in Network Compression for Reliable Network Interpretation},
+  author={Park, Geondo and Yang, June Yong and Hwang, Sung Ju and Yang, Eunho},
+  journal={Advances in Neural Information Processing Systems},
+  volume={33},
+  year={2020}
+}
