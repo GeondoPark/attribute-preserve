@@ -63,7 +63,7 @@ python evaluate_localization.py --gpu --data_path ../../data/VOCdevkit/VOC2012 -
  
 ## Citation
 ```
-@article{park2020attribution,
+@inproceedings{park2020attribution,
   title={Attribution Preservation in Network Compression for Reliable Network Interpretation},
   author={Park, Geondo and Yang, June Yong and Hwang, Sung Ju and Yang, Eunho},
   journal={Advances in Neural Information Processing Systems},
