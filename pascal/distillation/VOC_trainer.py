@@ -40,9 +40,10 @@ class VOC2012_vanilla_trainer(object):
         self.file_logger = logging.getLogger(__name__)
         self.file_logger.setLevel(logging.INFO)
         streamHandler = logging.StreamHandler()
-        file_handler = logging.FileHandler('./loggers/{}.txt'.format(opt.exp_name))
+        file_handler = logging.FileHandler('./logs/{}.txt'.format(opt.exp_name))
         self.file_logger.addHandler(streamHandler)
         self.file_logger.addHandler(file_handler)
+        self.file_logger.propagate = False
 
     def train(self, train_loader, val_loader, n_epochs):
 
@@ -157,8 +158,12 @@ class VOC2012_distill_trainer(object):
         self.logger = SummaryWriter(os.path.join("./logs", opt.exp_name))
         self.file_logger = logging.getLogger(__name__)
         self.file_logger.setLevel(logging.INFO)
-        file_handler = logging.FileHandler('./loggers/{}.txt'.format(opt.exp_name))
+        streamHandler = logging.StreamHandler()
+        file_handler = logging.FileHandler('./logs/{}.txt'.format(opt.exp_name))
+        self.file_logger.addHandler(streamHandler)
         self.file_logger.addHandler(file_handler)
+        self.file_logger.propagate = False
+        
 
     def train(self, train_loader, val_loader, n_epochs):
 

@@ -2,7 +2,8 @@ import os
 import numpy as np
 import torch
 import torch.utils.data as data
-from scipy.misc import imread, imresize
+from imageio import imread
+# from scipy.misc import imresize
 from scipy.sparse import csr_matrix
 from PIL import Image
 import xml.etree.ElementTree as ET
@@ -21,7 +22,7 @@ class VOC2012(data.Dataset):
         self.names, self.labels = self.__dataset_info(split)
     
     def __getitem__(self, index):
-        x = imread(self.data_path+'/JPEGImages/'+self.names[index]+'.jpg',mode='RGB')
+        x = imread(self.data_path+'/JPEGImages/'+self.names[index]+'.jpg', pilmode='RGB')
         x = Image.fromarray(x)
         
         scale = np.random.rand()*2+0.25

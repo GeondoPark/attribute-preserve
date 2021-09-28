@@ -6,7 +6,6 @@ import argparse
 from utils import set_random_seed
 #from model import *
 from vgg_pretrain import *
-from torchsummary import summary
 from VOC_trainer import VOC2012_vanilla_trainer
 from dataset import get_loader
 
@@ -21,7 +20,7 @@ parser.add_argument('--data_path', default="./data/VOCdevkit/VOC2012", type=str,
                     help="Data path, here for multi-label classification")
 parser.add_argument('--exp_name', default='None', type=str, 
                     help='Name of Current Running')
-parser.add_argument('--imagenet_pretrained', default=True, type=bool, 
+parser.add_argument('--imagenet_pretrained', action='store_true',
                     help='Start with pretrained weights on imagenet or Not')
 parser.add_argument('--learning_rate', default=0.1, type=float, 
                     help='initial learning rate')

@@ -5,6 +5,7 @@ from model import *
 from model.vgg_cfg import cfg as vgg_config
 from utils import load_model, compute_mAP
 from sklearn.metrics import f1_score
+import os
 
 def prune_vgg_cfg(cfg, prune_rate, iter):
     for idx in range(iter):
@@ -68,7 +69,10 @@ if __name__ == '__main__':
     else:
         model = torch.nn.DataParallel(model)
 
-    checkpoint = args.path
+    if os.path.isabs(args.path):
+        checkpoint = args.path
+    else:
+        checkpoint = os.path.join(os.getcwd(), args.path)
     _, best_mAP = load_model(checkpoint, model)
     val_loader = get_loader(data_name='VOC2012', 
                         data_path=args.data_path,
@@ -89,7 +93,7 @@ if __name__ == '__main__':
         targets.append(labels.cpu().data)
 
         if idx %100 == 0:
-            print("Processing Image {} | {}".format(idx, len(val_loader)))
+            print("Processing Image Batches {} | {}".format(idx, len(val_loader)))
 
     mAP = 100*compute_mAP(torch.cat(targets, dim=0).data, torch.cat(outputs, dim=0).data)
     f1 = f1_score(torch.cat(targets, dim=0).data.cpu().numpy(), torch.cat(outputs, dim=0).data.cpu().numpy() >= 0.5, average="samples")

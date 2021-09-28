@@ -9,7 +9,7 @@ from dataset import get_loader
 from model import *
 from model.vgg_cfg import cfg as vgg_config
 from utils import AverageMeter, load_model, Hooks
-from explains.rap.modules.vgg import vgg16, vgg16_bn, vgg16_bn_voc
+from explain.rap.modules.vgg import vgg16, vgg16_bn, vgg16_bn_voc
 from torch.autograd import Variable
 import torch.nn as nn
 #from explains.ebp.exc_bp import ExcitationBackpropExplainer
@@ -119,7 +119,7 @@ def main():
         model = model.module
 
     model.eval()
-    auc_values = []
+    auc_list = []
     correct_point = 0
     incorrect_point = 0
     pred_true = 0
@@ -142,8 +142,8 @@ def main():
             output = model(images)
 
         ## 0 index : BackGround
-        lbl = (labels[:,1:].squeeze(0)).nonzero().cpu().data.numpy()
-        predictions = (output.squeeze()>0).nonzero().cpu().data.numpy()
+        lbl = (labels[:,1:].squeeze(0)).nonzero(as_tuple=False).cpu().data.numpy() # 
+        predictions = (output.squeeze()>0).nonzero(as_tuple=False).cpu().data.numpy() # 
         pointacc_labels = []
 
         ## Class-wise heatmap
@@ -201,7 +201,7 @@ def main():
             h_max = np.nanmax(heatmap)
             h_min = np.nanmin(heatmap)
             heatmap = (heatmap - h_min) / (h_max - h_min + 10e-6)
-            auc_value = get_auc(heatmap, target_mask)
+            auc_value = get_auc(heatmap, seg_mask)
 
             if lb not in predictions:
                 pred_false += 1
@@ -212,7 +212,7 @@ def main():
             else:
                 incorrect_point += 1
             pred_true += 1
-            auc_list.append(auc_list)
+            auc_list.append(auc_value)
 
         if idx %100 == 0:
             print("Processing Image(Current|Total) {}|{}".format(idx, len(vocsegment)))
@@ -220,12 +220,12 @@ def main():
     meanAUC = sum(auc_list) / len(auc_list)
     print("Correct Prediction Samples: {}".format(pred_true))
     print("Incorrect Prediction Samples: {}".format(pred_false))
-    print("Point game correct samples in correct prediction: {}".format(correct_point))
-    print("Point game [(Point Correct and Prediction Correct)/(Prediction Correct)] : {}".format(float(correct_point/pred_true)))
+    print("Pointing game correct samples in correct prediction: {}".format(correct_point))
+    print("Pointing game [(Point Correct and Prediction Correct)/(Prediction Correct)] : {}".format(float(correct_point/pred_true)))
     print("Metric AUC : {}".format(meanAUC))
 
-    save_file = os.path.join('./results', args.save)
-    with open(save_file, 'a') as f:
+    save_file = args.save
+    with open(save_file, 'w') as f:
         f.write(checkpoint + '\t' + 'Metric AUC : {} \n'.format(float(meanAUC)))
         f.write(checkpoint + '\t' + 'Point Game Acc : {}'.format(float(correct_point/pred_true)))
 
